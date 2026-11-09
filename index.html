@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>BetterThanAI</title>
+<title>DesignByR</title>
 <meta name="description" content="Graphic design and photography portfolio.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,7 +45,7 @@ p{margin:0}
 
 main{min-height:60vh}
 .block{padding-block:36px 56px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:28px 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px}
 .card{min-width:0}
 .thumb{position:relative;display:block;aspect-ratio:4/5;background:var(--tile);border-radius:6px}
 .card .crop{transition:transform .25s}
@@ -56,11 +56,6 @@ main{min-height:60vh}
 .empty{border:1px dashed var(--line);border-radius:14px;padding:40px 20px;text-align:center;color:var(--muted)}
 
 .crop{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);max-width:100%;max-height:100%;box-shadow:var(--shadow);background:#fff}
-.crop::before{content:"";position:absolute;inset:-12px;pointer-events:none;background:
- linear-gradient(var(--mark) 0 0) left 0 top 11px/7px 1px no-repeat,linear-gradient(var(--mark) 0 0) left 11px top 0/1px 7px no-repeat,
- linear-gradient(var(--mark) 0 0) right 0 top 11px/7px 1px no-repeat,linear-gradient(var(--mark) 0 0) right 11px top 0/1px 7px no-repeat,
- linear-gradient(var(--mark) 0 0) left 0 bottom 11px/7px 1px no-repeat,linear-gradient(var(--mark) 0 0) left 11px bottom 0/1px 7px no-repeat,
- linear-gradient(var(--mark) 0 0) right 0 bottom 11px/7px 1px no-repeat,linear-gradient(var(--mark) 0 0) right 11px bottom 0/1px 7px no-repeat}
 .crop img,.page img{display:block;width:100%;height:100%;object-fit:contain}
 
 .crumb{display:inline-flex;gap:6px;text-decoration:none;color:var(--muted);font-size:14px;margin-top:28px}
@@ -164,7 +159,7 @@ function framed(p,boxR,pct,alt){var r=rOf(p,0.77);var size=r>boxR?"width:"+pct+"
 var REG='<svg class="reg" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="5.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M10 0v20M0 10h20" stroke="currentColor" stroke-width="1.4"/><circle cx="10" cy="10" r="2" fill="currentColor"/></svg>';
 function route(){var h=location.hash.replace(/^#/,"");if(h==="photography")return{v:"photos"};if(h.indexOf("w-")===0)return{v:"work",id:h.slice(2)};return{v:"home"}}
 function header(r){
-  return '<header class="top"><div class="wrap"><a class="brand" href="#">'+REG+esc(S.site.name)+'</a><nav class="nav" aria-label="Site"><a href="#" '+(r.v!=="photos"?'aria-current="page"':"")+'>Graphic Design</a><a href="#photography" '+(r.v==="photos"?'aria-current="page"':"")+'>Photography</a></nav></div></header>';
+  return '<header class="top"><div class="wrap"><a class="brand" href="#">'+esc(S.site.name)+'</a><nav class="nav" aria-label="Site"><a href="#" '+(r.v!=="photos"?'aria-current="page"':"")+'>Graphic Design</a><a href="#photography" '+(r.v==="photos"?'aria-current="page"':"")+'>Photography</a></nav></div></header>';
 }
 function footer(){
   var s=S.site, bits=['© '+new Date().getFullYear()+' '+esc(s.name)];
@@ -177,7 +172,7 @@ function homeView(){
   return '<section class="block"><div class="wrap"><div class="grid">'+S.works.map(function(w,i){
     var k=kindOf(w), n=pagesOf(w).length, meta=[KINDS[k]+(k==="flipbook"&&n?" · "+n+" pages":""),w.year].filter(Boolean).join(" · ");
     var cover=(w.images||[])[0];
-    return '<article class="card"><a class="thumb" href="#w-'+slug(w,i)+'" aria-label="'+esc(w.title)+'">'+(cover?framed(cover,0.8,k==="logo"?62:78,w.title):"")+'</a><h3>'+esc(w.title)+(workEx(w)?'<span class="ex">Example</span>':"")+'</h3><p class="mono">'+esc(meta)+'</p></article>';
+    return '<article class="card"><a class="thumb" href="#w-'+slug(w,i)+'" aria-label="'+esc(w.title||"Open design")+'">'+(cover?framed(cover,0.8,k==="logo"?62:78,w.title):"")+'</a></article>';
   }).join("")+'</div></div></section>';
 }
 function findWork(id){for(var i=0;i<S.works.length;i++)if(slug(S.works[i],i)===id)return i;return -1}
@@ -193,14 +188,14 @@ function workView(id){
   else if(k==="project")body='<div class="sheet"><div class="stack">'+pages.map(function(p,j){return '<div class="crop" style="aspect-ratio:'+rOf(p,1.4)+'" data-zoom="'+j+'">'+img(p,w.title)+'</div>'}).join("")+'</div></div>';
   else body='<div class="sheet"><div class="singles">'+pages.map(function(p,j){var r=rOf(p,0.77);return '<div class="solo" style="max-width:'+Math.round(Math.min(640,560*Math.sqrt(r/0.75)))+'px"><div class="crop" style="aspect-ratio:'+r+'" data-zoom="'+j+'">'+img(p,w.title)+'</div></div>'}).join("")+'</div></div>';
   var prev=S.works[i-1], next=S.works[i+1];
-  var pager=(prev||next)?'<nav class="pager">'+(prev?'<a href="#w-'+slug(prev,i-1)+'"><span class="mono">← Previous</span><h3>'+esc(prev.title)+'</h3></a>':"")+(next?'<a class="next" href="#w-'+slug(next,i+1)+'"><span class="mono">Next →</span><h3>'+esc(next.title)+'</h3></a>':"")+'</nav>':"";
-  return '<div class="wrap"><a class="crumb" href="#">← All work</a><div class="work-head"><h1>'+esc(w.title)+(workEx(w)?' <span class="ex">Example</span>':"")+'</h1><dl class="specs">'+rows.filter(function(r){return r[1]}).map(function(r){return '<dt>'+r[0]+'</dt><dd>'+esc(r[1])+'</dd>'}).join("")+'</dl></div>'+
+  var pager=(prev||next)?'<nav class="pager">'+(prev?'<a href="#w-'+slug(prev,i-1)+'" aria-label="Previous design"><span class="mono">← Previous</span></a>':"")+(next?'<a class="next" href="#w-'+slug(next,i+1)+'" aria-label="Next design"><span class="mono">Next →</span></a>':"")+'</nav>':"";
+  return '<div class="wrap"><a class="crumb" href="#">← All work</a><div style="height:24px"></div>'+
     (w.description?'<p class="desc">'+esc(w.description)+'</p>':"")+body+pager+'</div><div style="height:56px"></div>';
 }
 function photosView(){
   if(!S.photos.length)return '<div class="wrap block"><div class="empty">Photos are on the way.</div></div>';
   return '<section class="block"><div class="wrap"><div class="photos">'+S.photos.map(function(p,i){var r=rOf(p,1.5);
-    return '<button class="pitem" style="--r:'+r.toFixed(4)+'" data-photo="'+i+'" aria-label="View photo '+(i+1)+' larger">'+img(p,"Photo "+(i+1))+(isEx(p)?'<span class="ex">Example</span>':"")+'</button>'}).join("")+'</div></div></section>';
+    return '<button class="pitem" style="--r:'+r.toFixed(4)+'" data-photo="'+i+'" aria-label="View photo '+(i+1)+' larger">'+img(p,"Photo "+(i+1))+'</button>'}).join("")+'</div></div></section>';
 }
 
 var lastKey=null;
@@ -208,7 +203,7 @@ function render(keepScroll){
   var r=route(), main=r.v==="work"?workView(r.id):r.v==="photos"?photosView():homeView();
   var y=window.scrollY;
   app.innerHTML=header(r)+'<main>'+main+'</main>'+footer();
-  document.title=(r.v==="work"&&findWork(r.id)>-1?S.works[findWork(r.id)].title+" · ":r.v==="photos"?"Photography · ":"")+S.site.name;
+  document.title=(r.v==="photos"?"Photography · ":"")+S.site.name;
   if(location.hash!==lastKey){lastKey=location.hash;window.scrollTo(0,0)}else if(keepScroll)window.scrollTo(0,y);
   if(r.v==="work"){var i=findWork(r.id);if(i>-1&&kindOf(S.works[i])==="flipbook")mountFlip(S.works[i]);else fb=null}else fb=null;
 }
@@ -234,8 +229,7 @@ function drawFlip(){
   el.innerHTML=(fb.wide?'<div class="fb-stage" style="--r:'+(2*r)+'"><div class="fb-slot left">'+pageHTML(P,cur[0])+'</div><div class="fb-slot right">'+pageHTML(P,cur[1])+'</div></div>'
                        :'<div class="fb-stage single" style="--r:'+r+'"><div class="fb-slot right">'+pageHTML(P,cur[0])+'</div></div>')+
     '<div class="fb-ctrl"><button class="rbtn" data-fb="-1" aria-label="Previous page" '+(fb.s===0?"disabled":"")+'>←</button><span class="fb-count" aria-live="polite">'+label+'</span><button class="rbtn" data-fb="1" aria-label="Next page" '+(fb.s===ss.length-1?"disabled":"")+'>→</button></div>'+
-    '<div class="fb-strip">'+P.map(function(p,i){return '<button data-go="'+i+'" aria-label="Go to page '+(i+1)+'" aria-current="'+(cur.indexOf(i)>-1)+'">'+pageHTML(P,i)+'</button>'}).join("")+'</div>'+
-    '<p class="fb-tip">Use the arrow keys'+(fb.wide?" or click a page":" or swipe")+' to turn pages.</p>';
+    '<div class="fb-strip">'+P.map(function(p,i){return '<button data-go="'+i+'" aria-label="Go to page '+(i+1)+'" aria-current="'+(cur.indexOf(i)>-1)+'">'+pageHTML(P,i)+'</button>'}).join("")+'</div>';
   var st=$(".fb-stage",el),x0=null,moved=false;
   st.onpointerdown=function(e){x0=e.clientX;moved=false};
   st.onpointerup=function(e){if(x0==null)return;var dx=e.clientX-x0;x0=null;if(Math.abs(dx)>40){moved=true;turn(dx<0?1:-1)}};
@@ -301,7 +295,7 @@ window.addEventListener("hashchange",function(){render()});
 function getJSON(u){return fetch(u,{cache:"no-cache"}).then(function(r){if(!r.ok)throw new Error(u);return r.json()})}
 Promise.all([getJSON("content/site.json"),getJSON("content/works.json"),getJSON("content/photos.json")]).then(function(a){
   S.site=a[0]||{};S.works=(a[1]&&a[1].works)||[];S.photos=((a[2]&&a[2].photos)||[]).filter(Boolean);
-  if(!S.site.name)S.site.name="Portfolio";
+  if(!S.site.name||S.site.name==="BetterThanAI")S.site.name="DesignByR";
   render();
 }).catch(function(){app.innerHTML='<p class="wrap" style="padding-block:60px">The site couldn’t load. If you opened this file directly on your computer, it needs to be online (or run through a local server) to work.</p>'});
 })();
