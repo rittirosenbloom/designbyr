@@ -1,0 +1,60 @@
+# Change YOUR-GITHUB-USERNAME to your GitHub username (leave "/designbyr").
+backend:
+  name: github
+  repo: YOUR-GITHUB-USERNAME/designbyr
+  branch: main
+
+media_folder: media
+public_folder: media
+
+collections:
+  - name: site
+    label: My site
+    files:
+      - name: design
+        label: Graphic Design
+        file: content/works.json
+        fields:
+          - label: Pieces (top of the list shows first)
+            name: works
+            widget: list
+            summary: "{{fields.title}} · {{fields.type}}"
+            fields:
+              - { label: Title, name: title, widget: string }
+              - label: What kind of piece is this?
+                name: type
+                widget: select
+                default: single
+                options:
+                  - { label: "Flyer / poster (shown large)", value: single }
+                  - { label: "Flip book (visitors page through it)", value: flipbook }
+                  - { label: "Project (story + images)", value: project }
+                  - { label: "Logo / branding (grid of tiles)", value: logo }
+              - { label: Year, name: year, widget: string, required: false }
+              - { label: "Details (size, page count, client)", name: details, widget: string, required: false }
+              - { label: Description, name: description, widget: text, required: false }
+              - label: "Flip book PDF (optional — use this OR page images)"
+                name: pdf
+                widget: file
+                required: false
+                hint: "For flip books you can upload one PDF instead of page images."
+              - label: "Images (first one is the cover)"
+                name: images
+                widget: list
+                required: false
+                field: { label: Image, name: image, widget: image }
+      - name: photography
+        label: Photography
+        file: content/photos.json
+        fields:
+          - label: Photos (shown in this order)
+            name: photos
+            widget: list
+            field: { label: Photo, name: photo, widget: image }
+      - name: settings
+        label: Name & contact
+        file: content/site.json
+        fields:
+          - { label: Site name, name: name, widget: string }
+          - { label: "Email (optional, shown at the bottom)", name: email, widget: string, required: false }
+          - { label: "Instagram link (optional)", name: instagram, widget: string, required: false }

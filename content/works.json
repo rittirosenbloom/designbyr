@@ -1,0 +1,71 @@
+{
+  "works": [
+    {
+      "title": "Night Market Flyer",
+      "type": "single",
+      "year": "2026",
+      "details": "11 × 17 in",
+      "description": "Example piece. Sign in at /admin to replace it with your own work.",
+      "pdf": "",
+      "images": [
+        "media/examples/night-market.svg"
+      ]
+    },
+    {
+      "title": "Spring Recital Poster",
+      "type": "single",
+      "year": "2026",
+      "details": "18 × 24 in",
+      "description": "Example piece.",
+      "pdf": "",
+      "images": [
+        "media/examples/spring-recital.svg"
+      ]
+    },
+    {
+      "title": "Café Menu Booklet",
+      "type": "flipbook",
+      "year": "2026",
+      "details": "8 pages · 5.5 × 8.5 in",
+      "description": "Example flip book. Upload a PDF or page images and visitors can page through it.",
+      "pdf": "",
+      "images": [
+        "media/examples/menu-1.svg",
+        "media/examples/menu-2.svg",
+        "media/examples/menu-3.svg",
+        "media/examples/menu-4.svg",
+        "media/examples/menu-5.svg",
+        "media/examples/menu-6.svg",
+        "media/examples/menu-7.svg",
+        "media/examples/menu-8.svg"
+      ]
+    },
+    {
+      "title": "Riverside Farmers Market",
+      "type": "project",
+      "year": "2026",
+      "details": "Identity, signage, flyers",
+      "description": "Example project. Tell the story of one job, then add images in order.",
+      "pdf": "",
+      "images": [
+        "media/examples/market-1.svg",
+        "media/examples/market-2.svg",
+        "media/examples/market-3.svg",
+        "media/examples/market-4.svg"
+      ]
+    },
+    {
+      "title": "Fernhill Bakery",
+      "type": "logo",
+      "year": "2025",
+      "details": "Logo + mark",
+      "description": "Example logo set.",
+      "pdf": "",
+      "images": [
+        "media/examples/fernhill-1.svg",
+        "media/examples/fernhill-2.svg",
+        "media/examples/fernhill-3.svg"
+      ]
+    }
+  ]
+}

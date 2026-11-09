@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>BetterThanAI</title>
+<meta name="description" content="Graphic design and photography portfolio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#F6F7F9; --ink:#15171C; --muted:#5D6371; --line:#DCDFE5; --tile:#E9EBF0; --card:#FFFFFF;
+  --accent:#2747F0; --mark:#9AA0AC; --shadow:0 1px 2px rgba(20,24,40,.10),0 8px 24px rgba(20,24,40,.08);
+  --f-display:"Bricolage Grotesque","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --f-body:"Instrument Sans","Helvetica Neue",Arial,system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --gut-l:max(16px,env(safe-area-inset-left,0px)); --gut-r:max(16px,env(safe-area-inset-right,0px));
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#0F1115; --ink:#ECEEF3; --muted:#9BA2B0; --line:#272B34; --tile:#191C22; --card:#16191F;
+  --accent:#8297FF; --mark:#5C6370; --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35); color-scheme:dark}}
+*{box-sizing:border-box}
+html{scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+img{max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;font-weight:600;letter-spacing:-.01em}
+p{margin:0}
+.wrap{max-width:1240px;margin:0 auto;padding-left:var(--gut-l);padding-right:var(--gut-r)}
+.mono{font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+
+.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.top .wrap{display:flex;align-items:center;gap:20px;min-height:60px;padding-block:8px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--f-display);font-weight:700;font-size:19px;white-space:nowrap}
+.reg{width:20px;height:20px;flex:none}
+.nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;min-width:0}
+.nav a{text-decoration:none;font-size:14px;color:var(--muted);padding:6px 12px;border-radius:999px;white-space:nowrap}
+.nav a:hover{color:var(--ink);background:var(--tile)}
+.nav a[aria-current="page"]{color:var(--ink);background:var(--tile);font-weight:600}
+@media (max-width:560px){.top .wrap{flex-wrap:wrap;gap:4px 12px}.nav{flex-basis:100%;margin-inline:-4px}}
+
+main{min-height:60vh}
+.block{padding-block:36px 56px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:28px 20px}
+.card{min-width:0}
+.thumb{position:relative;display:block;aspect-ratio:4/5;background:var(--tile);border-radius:6px}
+.card .crop{transition:transform .25s}
+.card:hover .crop{transform:translate(-50%,-50%) scale(1.03)}
+.card h3{font-size:17px;margin-top:12px}
+.card .mono{margin-top:3px}
+.ex{display:inline-block;font-family:var(--f-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;border:1px dashed var(--muted);color:var(--muted);border-radius:4px;padding:1px 6px;vertical-align:middle;margin-left:6px}
+.empty{border:1px dashed var(--line);border-radius:14px;padding:40px 20px;text-align:center;color:var(--muted)}
+
+.crop{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);max-width:100%;max-height:100%;box-shadow:var(--shadow);background:#fff}
+.crop::before{content:"";position:absolute;inset:-12px;pointer-events:none;background:
+ linear-gradient(var(--mark) 0 0) left 0 top 11px/7px 1px no-repeat,linear-gradient(var(--mark) 0 0) left 11px top 0/1px 7px no-repeat,
+ linear-gradient(var(--mark) 0 0) right 0 top 11px/7px 1px no-repeat,linear-gradient(var(--mark) 0 0) right 11px top 0/1px 7px no-repeat,
+ linear-gradient(var(--mark) 0 0) left 0 bottom 11px/7px 1px no-repeat,linear-gradient(var(--mark) 0 0) left 11px bottom 0/1px 7px no-repeat,
+ linear-gradient(var(--mark) 0 0) right 0 bottom 11px/7px 1px no-repeat,linear-gradient(var(--mark) 0 0) right 11px bottom 0/1px 7px no-repeat}
+.crop img,.page img{display:block;width:100%;height:100%;object-fit:contain}
+
+.crumb{display:inline-flex;gap:6px;text-decoration:none;color:var(--muted);font-size:14px;margin-top:28px}
+.crumb:hover{color:var(--ink)}
+.work-head{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:16px 48px;align-items:end;padding-block:14px 28px}
+.work-head h1{font-size:clamp(34px,6vw,64px);line-height:1;letter-spacing:-.03em;font-weight:700}
+.specs{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;font-size:14px;border-top:1px solid var(--line);padding-top:12px;margin:0}
+.specs dt{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.specs dd{margin:0}
+.desc{max-width:65ch;font-size:17px;white-space:pre-line;margin-bottom:28px}
+@media (max-width:760px){.work-head{grid-template-columns:1fr}}
+.sheet{background:var(--tile);border-radius:10px;padding:clamp(28px,5vw,64px)}
+.singles{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(28px,4vw,56px)}
+.solo{flex:1 1 280px;max-width:640px}
+.solo .crop,.stack .crop{position:relative;left:auto;top:auto;transform:none;width:100%;cursor:zoom-in}
+.stack{display:grid;gap:clamp(28px,4vw,48px);max-width:1040px;margin:0 auto}
+.logos{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px}
+.logo-tile{position:relative;aspect-ratio:1;background:var(--card);border-radius:8px;cursor:zoom-in;border:0;padding:0;overflow:hidden}
+.logo-tile img{width:100%;height:100%;object-fit:contain;display:block}
+.pager{display:flex;justify-content:space-between;gap:16px;border-top:1px solid var(--line);margin-top:40px;padding-top:16px;flex-wrap:wrap}
+.pager a{text-decoration:none;display:flex;flex-direction:column;gap:2px;max-width:48%}
+.pager a:hover h3{color:var(--accent)}
+.pager .next{text-align:right;margin-left:auto}
+.pager h3{font-size:18px}
+
+.fb{display:flex;flex-direction:column;align-items:center;gap:18px}
+.fb-stage{--r:1.4;position:relative;width:min(100%,calc((100svh - 260px) * var(--r)));min-width:min(100%,260px);aspect-ratio:var(--r);perspective:2600px;display:grid;grid-template-columns:1fr 1fr;touch-action:pan-y;user-select:none;cursor:pointer}
+.fb-stage.single{grid-template-columns:1fr}
+.fb-slot{position:relative;min-width:0}
+.page{position:relative;width:100%;height:100%;overflow:hidden}
+.page.on{background:#fff;box-shadow:var(--shadow)}
+.fb-stage .left .page.on{box-shadow:var(--shadow),inset -18px 0 22px -18px rgba(0,0,0,.35)}
+.fb-stage .right .page.on{box-shadow:var(--shadow),inset 18px 0 22px -18px rgba(0,0,0,.28)}
+.fb-stage.single .page.on{box-shadow:var(--shadow)}
+.fb-leaf{position:absolute;top:0;bottom:0;width:50%;transform-style:preserve-3d;transition:transform .75s cubic-bezier(.35,.1,.2,1);z-index:3}
+.fb-leaf.from-right{left:50%;transform-origin:left center}.fb-leaf.from-right.go{transform:rotateY(-180deg)}
+.fb-leaf.from-left{left:0;transform-origin:right center}.fb-leaf.from-left.go{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.face.back{transform:rotateY(180deg)}
+.fb-ctrl{display:flex;align-items:center;gap:14px}
+.rbtn{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--card);cursor:pointer;font-size:18px}
+.rbtn:disabled{opacity:.4;cursor:default}
+.fb-count{font-family:var(--f-mono);font-size:13px;color:var(--muted);min-width:130px;text-align:center;font-variant-numeric:tabular-nums}
+.fb-strip{display:flex;gap:8px;overflow-x:auto;max-width:100%;padding:4px 2px 8px}
+.fb-strip button{flex:none;width:46px;height:60px;padding:0;border:2px solid transparent;border-radius:4px;background:var(--card);cursor:pointer;overflow:hidden}
+.fb-strip button[aria-current="true"]{border-color:var(--accent)}
+.fb-strip .page{pointer-events:none}
+.fb-tip{font-size:13px;color:var(--muted)}
+
+.photos{display:flex;flex-wrap:wrap;gap:10px}
+.photos::after{content:"";flex:999999 1 0}
+.photos{--rowh:220px}
+@media (max-width:640px){.photos{--rowh:120px;gap:6px}}
+.pitem{flex:calc(var(--r)*100) 1 calc(var(--r)*var(--rowh));aspect-ratio:var(--r);position:relative;display:block;border:0;padding:0;background:var(--tile);cursor:zoom-in;overflow:hidden;border-radius:3px;min-width:0}
+.pitem img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+.pitem:hover img{transform:scale(1.02)}
+.pitem .ex{position:absolute;left:8px;top:8px;margin:0;background:rgba(0,0,0,.5);color:#fff;border-color:rgba(255,255,255,.6)}
+
+#viewer{border:0;padding:0;width:100vw;height:100vh;height:100svh;max-width:none;max-height:none;background:#0B0B0C;color:#fff}
+#viewer::backdrop{background:#0B0B0C}
+.pv{position:absolute;inset:0;display:grid;grid-template-rows:auto 1fr;padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) calc(16px + env(safe-area-inset-bottom,0px)) env(safe-area-inset-left,0px)}
+.pv-top{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;font-family:var(--f-mono);font-size:13px;color:#B9BCC4}
+.pv-btn{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;cursor:pointer;font-size:16px}
+.pv-stage{position:relative;display:grid;place-items:center;min-height:0;touch-action:pan-y}
+.pv-stage img{max-width:calc(100% - 24px);max-height:100%;object-fit:contain;display:block}
+.pv-nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:0;background:rgba(255,255,255,.12);color:#fff;font-size:24px;cursor:pointer}
+.pv-nav:hover{background:rgba(255,255,255,.24)}
+.pv-nav.prev{left:12px}.pv-nav.next{right:12px}
+@media (max-width:640px){.pv-nav{display:none}}
+
+footer{padding-block:28px 48px;color:var(--muted);font-size:13px;border-top:1px solid var(--line)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 20px}
+footer .addr{user-select:all;color:var(--ink)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div id="app"><p class="wrap" style="padding-block:60px;color:#888">Loading…</p></div>
+<script>
+(function(){
+"use strict";
+var $=function(s,r){return (r||document).querySelector(s)};
+var app=$("#app");
+var esc=function(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})};
+var reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+var S={site:{name:""},works:[],photos:[]};
+var KINDS={single:"Flyer / poster",flipbook:"Flip book",project:"Project",logo:"Logo / branding"};
+function kindOf(w){return KINDS[w.type]?w.type:"single"}
+function src(p){return String(p||"").replace(/^\//,"")}
+function isEx(p){return /media\/examples\//.test(src(p))}
+function workEx(w){return (w.images||[]).length&&(w.images||[]).every(isEx)}
+function slug(w,i){return (String(w.title||"piece").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")||"piece")+"-"+(i+1)}
+
+/* image sizes are learned as images load, then the layout settles */
+var RC={}, settle=null;
+function rOf(p,guess){return RC[src(p)]||guess}
+document.addEventListener("load",function(e){var t=e.target;if(t.tagName!=="IMG"||!t.dataset.r)return;var k=t.dataset.r;if(!RC[k]&&t.naturalWidth){RC[k]=t.naturalWidth/t.naturalHeight;clearTimeout(settle);settle=setTimeout(function(){if(!fb||!fb.busy)render(true)},60)}},true);
+function img(p,alt,lazy){return '<img src="'+esc(src(p))+'"'+(lazy===false?"":' data-r="'+esc(src(p))+'" loading="lazy"')+' alt="'+esc(alt||"")+'" decoding="async">'}
+function framed(p,boxR,pct,alt){var r=rOf(p,0.77);var size=r>boxR?"width:"+pct+"%":"height:"+pct+"%";return '<div class="crop" style="'+size+';aspect-ratio:'+r+'">'+img(p,alt)+'</div>'}
+
+var REG='<svg class="reg" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="5.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M10 0v20M0 10h20" stroke="currentColor" stroke-width="1.4"/><circle cx="10" cy="10" r="2" fill="currentColor"/></svg>';
+function route(){var h=location.hash.replace(/^#/,"");if(h==="photography")return{v:"photos"};if(h.indexOf("w-")===0)return{v:"work",id:h.slice(2)};return{v:"home"}}
+function header(r){
+  return '<header class="top"><div class="wrap"><a class="brand" href="#">'+REG+esc(S.site.name)+'</a><nav class="nav" aria-label="Site"><a href="#" '+(r.v!=="photos"?'aria-current="page"':"")+'>Graphic Design</a><a href="#photography" '+(r.v==="photos"?'aria-current="page"':"")+'>Photography</a></nav></div></header>';
+}
+function footer(){
+  var s=S.site, bits=['© '+new Date().getFullYear()+' '+esc(s.name)];
+  if(s.email)bits.push('<span class="addr">'+esc(s.email)+'</span>');
+  if(s.instagram)bits.push('<a href="'+esc(/^https?:/.test(s.instagram)?s.instagram:"https://instagram.com/"+s.instagram.replace(/^@/,""))+'" target="_blank" rel="noopener">Instagram</a>');
+  return '<footer><div class="wrap">'+bits.map(function(b){return '<span>'+b+'</span>'}).join("")+'</div></footer>';
+}
+function homeView(){
+  if(!S.works.length)return '<div class="wrap block"><div class="empty">New work is on the way.</div></div>';
+  return '<section class="block"><div class="wrap"><div class="grid">'+S.works.map(function(w,i){
+    var k=kindOf(w), n=pagesOf(w).length, meta=[KINDS[k]+(k==="flipbook"&&n?" · "+n+" pages":""),w.year].filter(Boolean).join(" · ");
+    var cover=(w.images||[])[0];
+    return '<article class="card"><a class="thumb" href="#w-'+slug(w,i)+'" aria-label="'+esc(w.title)+'">'+(cover?framed(cover,0.8,k==="logo"?62:78,w.title):"")+'</a><h3>'+esc(w.title)+(workEx(w)?'<span class="ex">Example</span>':"")+'</h3><p class="mono">'+esc(meta)+'</p></article>';
+  }).join("")+'</div></div></section>';
+}
+function findWork(id){for(var i=0;i<S.works.length;i++)if(slug(S.works[i],i)===id)return i;return -1}
+function pagesOf(w){return pdfPages[src(w.pdf)]||w.images||[]}
+function workView(id){
+  var i=findWork(id); if(i<0)return '<div class="wrap"><a class="crumb" href="#">← All work</a><div class="empty" style="margin-top:24px">That page doesn’t exist anymore.</div></div>';
+  var w=S.works[i], k=kindOf(w), pages=pagesOf(w), body;
+  var rows=[["Type",KINDS[k]],["Year",w.year],["Details",w.details]];
+  if(k==="flipbook"&&pages.length)rows.push(["Pages",String(pages.length)]);
+  if(k==="flipbook"&&(pages.length||w.pdf))body='<div class="sheet"><div class="fb" id="fb">'+(w.pdf&&!pdfPages[src(w.pdf)]?'<p class="fb-tip">Loading pages…</p>':"")+'</div></div>';
+  else if(!pages.length)body='<div class="empty">Images coming soon.</div>';
+  else if(k==="logo")body='<div class="logos">'+pages.map(function(p,j){return '<button class="logo-tile" data-zoom="'+j+'" aria-label="View larger">'+img(p,w.title)+'</button>'}).join("")+'</div>';
+  else if(k==="project")body='<div class="sheet"><div class="stack">'+pages.map(function(p,j){return '<div class="crop" style="aspect-ratio:'+rOf(p,1.4)+'" data-zoom="'+j+'">'+img(p,w.title)+'</div>'}).join("")+'</div></div>';
+  else body='<div class="sheet"><div class="singles">'+pages.map(function(p,j){var r=rOf(p,0.77);return '<div class="solo" style="max-width:'+Math.round(Math.min(640,560*Math.sqrt(r/0.75)))+'px"><div class="crop" style="aspect-ratio:'+r+'" data-zoom="'+j+'">'+img(p,w.title)+'</div></div>'}).join("")+'</div></div>';
+  var prev=S.works[i-1], next=S.works[i+1];
+  var pager=(prev||next)?'<nav class="pager">'+(prev?'<a href="#w-'+slug(prev,i-1)+'"><span class="mono">← Previous</span><h3>'+esc(prev.title)+'</h3></a>':"")+(next?'<a class="next" href="#w-'+slug(next,i+1)+'"><span class="mono">Next →</span><h3>'+esc(next.title)+'</h3></a>':"")+'</nav>':"";
+  return '<div class="wrap"><a class="crumb" href="#">← All work</a><div class="work-head"><h1>'+esc(w.title)+(workEx(w)?' <span class="ex">Example</span>':"")+'</h1><dl class="specs">'+rows.filter(function(r){return r[1]}).map(function(r){return '<dt>'+r[0]+'</dt><dd>'+esc(r[1])+'</dd>'}).join("")+'</dl></div>'+
+    (w.description?'<p class="desc">'+esc(w.description)+'</p>':"")+body+pager+'</div><div style="height:56px"></div>';
+}
+function photosView(){
+  if(!S.photos.length)return '<div class="wrap block"><div class="empty">Photos are on the way.</div></div>';
+  return '<section class="block"><div class="wrap"><div class="photos">'+S.photos.map(function(p,i){var r=rOf(p,1.5);
+    return '<button class="pitem" style="--r:'+r.toFixed(4)+'" data-photo="'+i+'" aria-label="View photo '+(i+1)+' larger">'+img(p,"Photo "+(i+1))+(isEx(p)?'<span class="ex">Example</span>':"")+'</button>'}).join("")+'</div></div></section>';
+}
+
+var lastKey=null;
+function render(keepScroll){
+  var r=route(), main=r.v==="work"?workView(r.id):r.v==="photos"?photosView():homeView();
+  var y=window.scrollY;
+  app.innerHTML=header(r)+'<main>'+main+'</main>'+footer();
+  document.title=(r.v==="work"&&findWork(r.id)>-1?S.works[findWork(r.id)].title+" · ":r.v==="photos"?"Photography · ":"")+S.site.name;
+  if(location.hash!==lastKey){lastKey=location.hash;window.scrollTo(0,0)}else if(keepScroll)window.scrollTo(0,y);
+  if(r.v==="work"){var i=findWork(r.id);if(i>-1&&kindOf(S.works[i])==="flipbook")mountFlip(S.works[i]);else fb=null}else fb=null;
+}
+
+/* ---------- flip book ---------- */
+var fb=null, pdfPages={};
+function isWide(){return window.innerWidth>=760}
+function spreads(n,wide){var s=[],i;if(!wide){for(i=0;i<n;i++)s.push([i]);return s}s.push([null,0]);for(i=1;i<n;i+=2)s.push([i,i+1<n?i+1:null]);return s}
+function pageHTML(pages,i){if(i==null||!pages[i])return '<div class="page"></div>';return '<div class="page on">'+img(pages[i],"Page "+(i+1),false)+'</div>'}
+async function mountFlip(w){
+  if(w.pdf&&!pdfPages[src(w.pdf)]){try{pdfPages[src(w.pdf)]=await renderPdf(src(w.pdf))}catch(e){var el=$("#fb");if(el)el.innerHTML='<p class="fb-tip">This flip book couldn’t be loaded.</p>';return}render(true);return}
+  var pages=pagesOf(w); if(!pages.length)return;
+  var keep=fb&&fb.w===w?fb.page:0;
+  if(!RC[src(pages[0])]){await new Promise(function(ok){var im=new Image();im.onload=function(){RC[src(pages[0])]=im.naturalWidth/im.naturalHeight;ok()};im.onerror=ok;im.src=src(pages[0])})}
+  fb={w:w,pages:pages,wide:isWide(),s:0,busy:false,page:keep};fb.s=spreadAt(keep);drawFlip();
+}
+function spreadAt(p){var ss=spreads(fb.pages.length,fb.wide);for(var i=0;i<ss.length;i++)if(ss[i].indexOf(p)>-1)return i;return 0}
+function drawFlip(){
+  var el=$("#fb");if(!el||!fb)return;
+  var P=fb.pages,n=P.length,ss=spreads(n,fb.wide),cur=ss[fb.s],r=rOf(P[0],0.7);
+  var shown=cur.filter(function(x){return x!=null});fb.page=shown[0];
+  var label=(shown.length>1?"Pages "+(shown[0]+1)+"–"+(shown[1]+1):"Page "+(shown[0]+1))+" of "+n;
+  el.innerHTML=(fb.wide?'<div class="fb-stage" style="--r:'+(2*r)+'"><div class="fb-slot left">'+pageHTML(P,cur[0])+'</div><div class="fb-slot right">'+pageHTML(P,cur[1])+'</div></div>'
+                       :'<div class="fb-stage single" style="--r:'+r+'"><div class="fb-slot right">'+pageHTML(P,cur[0])+'</div></div>')+
+    '<div class="fb-ctrl"><button class="rbtn" data-fb="-1" aria-label="Previous page" '+(fb.s===0?"disabled":"")+'>←</button><span class="fb-count" aria-live="polite">'+label+'</span><button class="rbtn" data-fb="1" aria-label="Next page" '+(fb.s===ss.length-1?"disabled":"")+'>→</button></div>'+
+    '<div class="fb-strip">'+P.map(function(p,i){return '<button data-go="'+i+'" aria-label="Go to page '+(i+1)+'" aria-current="'+(cur.indexOf(i)>-1)+'">'+pageHTML(P,i)+'</button>'}).join("")+'</div>'+
+    '<p class="fb-tip">Use the arrow keys'+(fb.wide?" or click a page":" or swipe")+' to turn pages.</p>';
+  var st=$(".fb-stage",el),x0=null,moved=false;
+  st.onpointerdown=function(e){x0=e.clientX;moved=false};
+  st.onpointerup=function(e){if(x0==null)return;var dx=e.clientX-x0;x0=null;if(Math.abs(dx)>40){moved=true;turn(dx<0?1:-1)}};
+  st.onclick=function(e){if(moved||!fb.wide)return;var b=st.getBoundingClientRect();turn(e.clientX>b.left+b.width/2?1:-1)};
+}
+function turn(dir){
+  if(!fb||fb.busy)return;
+  var P=fb.pages,ss=spreads(P.length,fb.wide),ni=fb.s+dir;if(ni<0||ni>=ss.length)return;
+  if(!fb.wide||reduce){fb.s=ni;drawFlip();return}
+  var stage=$("#fb .fb-stage"),cur=ss[fb.s],nx=ss[ni],L=$(".left",stage),R=$(".right",stage),leaf=document.createElement("div");
+  fb.busy=true;
+  if(dir>0){leaf.className="fb-leaf from-right";leaf.innerHTML='<div class="face">'+pageHTML(P,cur[1])+'</div><div class="face back">'+pageHTML(P,nx[0])+'</div>';R.innerHTML=pageHTML(P,nx[1])}
+  else{leaf.className="fb-leaf from-left";leaf.innerHTML='<div class="face">'+pageHTML(P,cur[0])+'</div><div class="face back">'+pageHTML(P,nx[1])+'</div>';L.innerHTML=pageHTML(P,nx[0])}
+  stage.appendChild(leaf);
+  var done=false,fin=function(){if(done)return;done=true;fb.s=ni;fb.busy=false;drawFlip()};
+  leaf.addEventListener("transitionend",fin,{once:true});setTimeout(fin,1000);
+  requestAnimationFrame(function(){requestAnimationFrame(function(){leaf.classList.add("go")})});
+}
+window.addEventListener("resize",function(){if(fb&&fb.wide!==isWide()){fb.wide=isWide();fb.s=spreadAt(fb.page);drawFlip()}});
+function loadScript(u){return new Promise(function(ok,bad){var s=document.createElement("script");s.src=u;s.onload=ok;s.onerror=bad;document.head.appendChild(s)})}
+async function renderPdf(url){
+  var base="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/";
+  if(!window.pdfjsLib){await loadScript(base+"pdf.min.js");await loadScript(base+"pdf.worker.min.js")}
+  var doc=await window.pdfjsLib.getDocument({url:url,isEvalSupported:false}).promise,out=[];
+  for(var i=1;i<=doc.numPages;i++){
+    var pg=await doc.getPage(i),v1=pg.getViewport({scale:1}),vp=pg.getViewport({scale:Math.min(3,1600/Math.max(v1.width,v1.height))});
+    var c=document.createElement("canvas");c.width=Math.round(vp.width);c.height=Math.round(vp.height);
+    var ctx=c.getContext("2d");ctx.fillStyle="#fff";ctx.fillRect(0,0,c.width,c.height);
+    await pg.render({canvasContext:ctx,viewport:vp}).promise;
+    var u=c.toDataURL("image/jpeg",0.85);RC[u]=c.width/c.height;out.push(u);
+  }
+  return out;
+}
+
+/* ---------- full-screen viewer ---------- */
+var V={list:[],i:0};
+function openViewer(list,i){V.list=list;V.i=i;var d=$("#viewer")||document.body.appendChild(Object.assign(document.createElement("dialog"),{id:"viewer"}));drawViewer();if(!d.open)d.showModal()}
+function drawViewer(){
+  var d=$("#viewer"),p=V.list[V.i],n=V.list.length;
+  d.innerHTML='<div class="pv"><div class="pv-top"><span>'+(n>1?(V.i+1)+" / "+n:"")+'</span><button class="pv-btn" data-v="close" aria-label="Close">✕</button></div><div class="pv-stage"><img src="'+esc(src(p))+'" alt="">'+
+    (V.i>0?'<button class="pv-nav prev" data-v="-1" aria-label="Previous">‹</button>':"")+(V.i<n-1?'<button class="pv-nav next" data-v="1" aria-label="Next">›</button>':"")+'</div></div>';
+  d.querySelectorAll("[data-v]").forEach(function(b){b.onclick=function(e){e.stopPropagation();if(b.dataset.v==="close")d.close();else{V.i+=+b.dataset.v;drawViewer()}}});
+  var stg=$(".pv-stage",d),x0=null;
+  stg.onclick=function(e){if(e.target===stg)d.close()};
+  stg.onpointerdown=function(e){x0=e.clientX};
+  stg.onpointerup=function(e){if(x0==null)return;var dx=e.clientX-x0;x0=null;if(Math.abs(dx)>50){var k=V.i+(dx<0?1:-1);if(k>=0&&k<n){V.i=k;drawViewer()}}};
+}
+document.addEventListener("keydown",function(e){
+  var d=$("#viewer");
+  if(d&&d.open){var k=e.key==="ArrowRight"?V.i+1:e.key==="ArrowLeft"?V.i-1:-1;if(k>=0&&k<V.list.length){V.i=k;drawViewer()}return}
+  if(fb){if(e.key==="ArrowRight")turn(1);else if(e.key==="ArrowLeft")turn(-1)}
+});
+document.addEventListener("click",function(e){
+  var t;
+  if((t=e.target.closest("[data-photo]")))openViewer(S.photos,+t.dataset.photo);
+  else if((t=e.target.closest("[data-zoom]"))){var w=S.works[findWork(route().id)];if(w)openViewer(pagesOf(w),+t.dataset.zoom)}
+  else if((t=e.target.closest("[data-fb]"))){e.stopPropagation();turn(+t.dataset.fb)}
+  else if((t=e.target.closest("[data-go]"))&&fb){fb.s=spreadAt(+t.dataset.go);drawFlip()}
+});
+window.addEventListener("hashchange",function(){render()});
+
+/* ---------- load content ---------- */
+function getJSON(u){return fetch(u,{cache:"no-cache"}).then(function(r){if(!r.ok)throw new Error(u);return r.json()})}
+Promise.all([getJSON("content/site.json"),getJSON("content/works.json"),getJSON("content/photos.json")]).then(function(a){
+  S.site=a[0]||{};S.works=(a[1]&&a[1].works)||[];S.photos=((a[2]&&a[2].photos)||[]).filter(Boolean);
+  if(!S.site.name)S.site.name="Portfolio";
+  render();
+}).catch(function(){app.innerHTML='<p class="wrap" style="padding-block:60px">The site couldn’t load. If you opened this file directly on your computer, it needs to be online (or run through a local server) to work.</p>'});
+})();
+</script>
+</body>
+</html>
