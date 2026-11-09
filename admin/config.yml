@@ -1,7 +1,7 @@
 # Change YOUR-GITHUB-USERNAME to your GitHub username (leave "/designbyr").
 backend:
   name: github
-  repo: YOUR-GITHUB-USERNAME/designbyr
+  repo: rittirosenbloom/designbyr
   branch: main
 
 media_folder: media
